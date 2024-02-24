@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+if [ -z "$EDITOR" ]; then
+    EDITOR="nano"
+fi
+
+NOTEDIR="$HOME/.notes"
+
+if [ "$1" == "edit" ]; then
+    $EDITOR "$NOTEDIR/$2"
+elif [ "$1" == "rm" ]; then
+    rm "$NOTEDIR/$2"
+elif [ "$1" == "cd" ]; then
+    cd "$NOTEDIR" || return
+elif [ "$1" == "dir" ]; then
+    mkdir "$NOTEDIR/$2"
+else
+    printf "Invalid command. Flags: edit,rm,cd,dir\n"
+		exit 1
+fi
